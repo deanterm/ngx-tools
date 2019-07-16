@@ -123,7 +123,10 @@ export class TokenNearingExpiration<C> implements Action {
 export class EscalateToken<C> implements Action {
   public type: typeof ActionTypes.EscalateToken = ActionTypes.EscalateToken;
 
-  public constructor(public tokenName: Extract<keyof C, string>) {}
+  public constructor(
+    public tokenName: Extract<keyof C, string>,
+    public maintainEscalation = false,
+  ) {}
 }
 
 

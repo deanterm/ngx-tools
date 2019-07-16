@@ -2,6 +2,7 @@ export * from './apply-mixins/apply-mixins';
 export * from './array-contains-object/array-contains-object';
 export * from './compact-array/compact-array';
 export * from './cookie-service/cookie.service';
+export * from './date/date-service';
 export * from './debounce/debounce';
 export * from './define-type/define-type';
 export * from './document/document.service';

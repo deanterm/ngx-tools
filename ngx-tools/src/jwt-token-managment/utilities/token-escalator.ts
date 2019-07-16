@@ -18,9 +18,11 @@ import {
 } from 'rxjs';
 import {
   catchError,
+  delay,
   filter,
   map,
   switchMap,
+  tap,
   withLatestFrom,
 } from 'rxjs/operators';
 
@@ -28,7 +30,8 @@ import * as JwtActions from './../actions';
 import { ClaimMap } from './../claim-map';
 import { tokenFor } from './../selectors';
 import { TokenExtractor } from './token-extractor';
-
+import { DateService } from '../../date/date-service';
+import { jwtDecode } from '../../jwt-decode';
 
 // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
 // 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
@@ -39,14 +42,26 @@ export const ESCALATION_WAIT_TIME = new InjectionToken<number>('wait time');
 export interface EscalateToken<CM = ClaimMap> extends Partial<JwtActions.StoreTokenConstructor<CM>> {
   authorizeUrl: Observable<string>;
   tokenName: Extract<keyof CM, string>;
+  autoReEscalate?: boolean;
+  autoReEscalateBufferMS?: number;
 }
 
+const MS_IN_A_SECOND = 1000;
+const SECONDS_IN_A_MINUTE = 60;
+const FIVE_MINUTES = 5;
+const FIVE_MIN_MS = MS_IN_A_SECOND * SECONDS_IN_A_MINUTE * FIVE_MINUTES;
 
 @Injectable()
 export class TokenEscalator<CM = ClaimMap> {
 
   // tslint:disable-next-line no-any
-  public escalateToken({tokenName, authorizeUrl, isDefaultToken}: EscalateToken<CM>): Observable<any> {
+  public escalateToken({
+    tokenName,
+    authorizeUrl,
+    isDefaultToken,
+    autoReEscalate = false,
+    autoReEscalateBufferMS = FIVE_MIN_MS,
+  }: EscalateToken<CM>): Observable<any> {
     return this.actions$
       .pipe(
         ofType<JwtActions.EscalateToken<CM>>(JwtActions.ActionTypes.EscalateToken),
@@ -66,6 +81,21 @@ export class TokenEscalator<CM = ClaimMap> {
               tokenName,
               isDefaultToken,
             }),
+            tap(resp => {
+              // TODO: Move???
+              if (!autoReEscalate) {
+                return;
+              }
+              const token = this.tokenExtractor.extractTokenFromResponse(resp);
+              const decoded = jwtDecode<any>(token);
+              const nowInMS = this.dateService.getCurrentDate().getTime();
+              const expTimeMS = decoded.exp * MS_IN_A_SECOND;
+              const msUntilRefresh = (expTimeMS - autoReEscalateBufferMS) - nowInMS;
+              of(true).pipe(
+                delay(msUntilRefresh),
+                tap(() => this.store.dispatch(action)),
+              );
+            }),
             map(() => new JwtActions.EscalationSuccess(tokenName)),
             // NOTE: TSLint is reporting an incorrect deprecation. Remove once https://github.com/palantir/tslint/issues/4522 lands
             // tslint:disable-next-line deprecation
@@ -84,6 +114,7 @@ export class TokenEscalator<CM = ClaimMap> {
     public store: Store<any>,
     public http: HttpClient,
     public tokenExtractor: TokenExtractor<CM>,
+    public dateService: DateService,
   ) {}
 
 }

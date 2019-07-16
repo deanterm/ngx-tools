@@ -6,9 +6,11 @@ import {
   StoreModule,
 } from '@ngrx/store';
 
-import { ClaimMap } from './claim-map';
+import { DateService } from '../date/date-service';
 import { JwtTokenProviderEffects } from './effects';
 import { DefaultTokenRequired } from './guards/defaultTokenRequired';
+import { PreEscalateTokenService } from './guards/pre-escalate-token';
+import { TokenClaimGuard } from './guards/token-claim';
 import { jwtTokenProviderReducer } from './reducer';
 import {
   JWT_TOKEN_MANAGEMENT_STATE_TOKEN,
@@ -18,7 +20,6 @@ import { INITIAL_TOKEN_NAME } from './tokens';
 import { RetryWithEscalation } from './utilities/retry-with-escalation';
 import { TokenEscalator } from './utilities/token-escalator';
 import { TokenExtractor } from './utilities/token-extractor';
-
 
 // Not sure why this second param is required in strict mode
 // tslint:disable-next-line no-any
@@ -41,6 +42,9 @@ export const reducers: ActionReducerMap<State, any> = {jwtTokens: jwtTokenProvid
     TokenEscalator,
     TokenExtractor,
     DefaultTokenRequired,
+    PreEscalateTokenService,
+    TokenClaimGuard,
+    DateService,
   ],
 })
 export class JwtTokenManagementModule {

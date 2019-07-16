@@ -24,7 +24,7 @@ import {
   takeUntil,
   withLatestFrom,
 } from 'rxjs/operators';
-
+import { MockDateService } from './date-service.mock';
 
 // TODO: Scheduler is marked as deprecated to stop others from using although it is not technically deprecated from what I can tell. The
 // 'correct' path would be to create our own class extending `SchedulerLike`. https://github.com/GetTerminus/ngx-tools/issues/287
@@ -87,9 +87,16 @@ export class TokenEscalatorMock<CM = ClaimMap> implements TokenEscalator<CM> {
     public store: Store<any>,
     public http: HttpClient,
     public tokenExtractor: TokenExtractor<CM>,
+    public dateService: MockDateService,
   ) {}
 }
 
 export function tokenEscalatorFactory() {
-  return new TokenEscalatorMock(undefined as any, undefined as any, undefined as any, undefined as any);
+  return new TokenEscalatorMock(
+    undefined as any,
+    undefined as any,
+    undefined as any,
+    undefined as any,
+    undefined as any
+  );
 }
