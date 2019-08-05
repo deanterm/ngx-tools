@@ -17,7 +17,7 @@
     "ng": "ng",
     "start:app": "ng serve",
     "build:app": "cpr dist/ngx-tools demo/@terminus/ngx-tools --overwrite && ng build --app packages && rimraf demo/@terminus",
-    "test:app": "ng test",
+    "test:demo": "jest --config ./ngx-tools/jest.demo.config.js",
     "lint:app": "ng lint",
     "e2e:app": "ng e2e",
     "////////// Section: Library": "==============================",

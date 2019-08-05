@@ -1,15 +1,15 @@
-import {
-  TestBed,
-  async,
-} from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import {
-  TsWindowService,
-  TsDocumentService,
-} from '@terminus/ngx-tools';
+  async,
+  TestBed,
+} from '@angular/core/testing';
 import {
-  TsWindowServiceMock,
+  TsDocumentService,
+  TsWindowService,
+} from '@terminus/ngx-tools/';
+import {
   TsDocumentServiceMock,
+  TsWindowServiceMock,
 } from '@terminus/ngx-tools/testing';
 
 import { AppComponent } from './app.component';
