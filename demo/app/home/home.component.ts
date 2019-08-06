@@ -5,13 +5,15 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  TsDocumentService,
+  TsWindowService,
+} from '@terminus/ngx-tools/browser';
+import { emailRegex } from '@terminus/ngx-tools/regex';
+import {
   DelayCalculator,
   exponentialBackoffDelayCalculator,
   retryWithBackoff,
-  TsDocumentService,
-  TsWindowService,
-} from '@terminus/ngx-tools';
-import { emailRegex } from '@terminus/ngx-tools/regex';
+} from '@terminus/ngx-tools/utilities';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 console.log('emailRegex: ', emailRegex.test('foo@bar.com'), emailRegex.test('foo'));

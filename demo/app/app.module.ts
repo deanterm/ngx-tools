@@ -14,20 +14,20 @@ import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-  ],
-  providers: [
-    TsWindowService,
-    TsDocumentService,
-  ],
   declarations: [
     AppComponent,
     ChildComponent,
     HomeComponent,
+  ],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+  ],
+  providers: [
+    TsWindowService,
+    TsDocumentService,
   ],
   bootstrap: [AppComponent],
 })

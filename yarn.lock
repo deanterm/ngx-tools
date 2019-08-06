@@ -177,17 +177,17 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-8.0.0.tgz#1ee4ce5003897cad53597da28f4c94fe30519bfb"
   integrity sha512-vGk14oWroEo6ycO4cooznx57nn2sASmCQ/sdE8UVwySUKl940TsVzijgaGqapTepFof9sMqN77y2G15eRKQeAQ==
 
-"@angular/platform-browser-dynamic@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-8.0.0.tgz#c15f394579ff44f3752033de58edc1afa5065d59"
-  integrity sha512-dx7W7JoSFbsveexjZ/BPlsXbMDLWVLmRCo7IqLvibMrTbdpaaOCNJIXJk1X+f7JJrQ7SwlZaVkoLCMoDWw6fmA==
+"@angular/platform-browser-dynamic@^8.0.1":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-8.2.0.tgz#c3457ab5314a17560c604685d9da24e2da59e61b"
+  integrity sha512-nPPnsJ+g6jvhdiPBQ3zBhdouBKnPdBx4Vm3gOgKSuQ1m7jW7aVFhNFi1IgkNOTZLKLyvIZ2F1EhiR3A3fUJteA==
   dependencies:
     tslib "^1.9.0"
 
-"@angular/platform-browser@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-8.0.0.tgz#fc7c55a0483e67e5606e499c129fda60ae8d4363"
-  integrity sha512-fTD+pTMbq+On9Uv3VXiei2lfuX7GX31dngm/Y4yWTFeW6eXy0+7kkfflzpLOb0hykCZvcXzarqCuEBBYNLrrOg==
+"@angular/platform-browser@^8.0.1":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-8.2.0.tgz#aa38096470d6240ba037f543e3b356d0f378ee08"
+  integrity sha512-0VeNOspfjFZudMwca6ZCESCNloydqzifOn6fSetY0ILzO6MnM8GX/PiAByppYRXoIla3pwDtg1lcI+FUZoaT5Q==
   dependencies:
     tslib "^1.9.0"
 
@@ -804,9 +804,9 @@
     "@typescript-eslint/parser" "^1.10.2"
 
 "@terminus/ngx-tools@*":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-7.0.1.tgz#ca1f709c1a093c225cef23e9c851d76fb547dd10"
-  integrity sha512-MfIDWria42TvGQOX5WNSHCuix4Zbd5sBsqXdJoRvry9773WnCMr90/FKS5ZD0ySoQoAgwOAa1oVEaKuWvRY3Yg==
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-7.1.0.tgz#06cd9a69385411b5ca88d06ba2c0c1fecda4e6fd"
+  integrity sha512-vMqEyiFSYEl1OJe40pPq1Doaymd7L8yv4OWRQaIEKS/H1a79dKcjBR/jHbOZY098cTk8kMoB1ynFiCK71l+ThQ==
   dependencies:
     tslib "^1.9.0"
 
