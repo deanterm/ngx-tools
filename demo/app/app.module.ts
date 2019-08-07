@@ -17,7 +17,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     ChildComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,
